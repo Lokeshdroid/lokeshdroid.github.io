@@ -26,29 +26,29 @@ var Typer = {
   },
 
   addText: function (key) {
-    if (key.keyCode == 18) {
+    if (key.keyCode === 18) {
       Typer.accessCount++;
 
       if (Typer.accessCount >= 3) {
         Typer.makeAccess();
       }
-    } else if (key.keyCode == 20) {
+    } else if (key.keyCode === 20) {
       Typer.deniedCount++;
 
       if (Typer.deniedCount >= 3) {
         Typer.makeDenied();
       }
-    } else if (key.keyCode == 27) {
+    } else if (key.keyCode === 27) {
       Typer.hidepop();
     } else if (Typer.text) {
       var cont = Typer.content();
-      if (cont.substring(cont.length - 1, cont.length) == "|")
+      if (cont.substring(cont.length - 1, cont.length) === "|")
         $("#console").html(
           $("#console")
             .html()
             .substring(0, cont.length - 1)
         );
-      if (key.keyCode != 8) {
+      if (key.keyCode !== 8) {
         Typer.index += Typer.speed;
       } else {
         if (Typer.index > 0) Typer.index -= Typer.speed;
@@ -60,11 +60,11 @@ var Typer = {
       window.scrollBy(0, 50);
     }
 
-    if (key.preventDefault && key.keyCode != 122) {
+    if (key.preventDefault && key.keyCode !== 122) {
       key.preventDefault();
     }
 
-    if (key.keyCode != 122) {
+    if (key.keyCode !== 122) {
       // otherway prevent keys default behavior
       key.returnValue = false;
     }
@@ -73,7 +73,7 @@ var Typer = {
   updLstChr: function () {
     var cont = this.content();
 
-    if (cont.substring(cont.length - 1, cont.length) == "|")
+    if (cont.substring(cont.length - 1, cont.length) === "|")
       $("#console").html(
         $("#console")
           .html()
@@ -87,9 +87,9 @@ function replaceUrls(text) {
   var http = text.indexOf("http://");
   var space = text.indexOf(".me ", http);
 
-  if (space != -1) {
+  if (space !== -1) {
     var url = text.slice(http, space - 1);
-    return text.replace(url, '<a href="' + url + '">' + url + "</a>");
+    return text.replace(url, '<a href="' + url + '' + url + "</a>");
   } else {
     return text;
   }
@@ -99,7 +99,7 @@ Typer.speed = 3;
 Typer.file = "app/data/lokesh.txt";
 Typer.init();
 
-var timer = setInterval("t();", 30);
+var timer = setInterval("t();", 10);
 function t() {
   Typer.addText({ keyCode: 123748 });
 
