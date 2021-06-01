@@ -99,7 +99,7 @@ Typer.speed = 3;
 Typer.file = "app/data/lokesh.txt";
 Typer.init();
 
-var timer = setInterval("t();", 20);
+var timer = setInterval("t();",20);
 function t() {
   Typer.addText({ keyCode: 123748 });
 
